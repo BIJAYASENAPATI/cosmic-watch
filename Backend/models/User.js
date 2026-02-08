@@ -1,0 +1,41 @@
+module.exports = (sequelize, DataTypes) => {
+    const User = sequelize.define(
+        "User",
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            email: {
+                type: DataTypes.STRING,
+                unique: true,
+                allowNull: false,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+        },
+        {
+            tableName: "users",
+            timestamps: true,
+            createdAt: "created_at",
+            updatedAt: false,
+        }
+    );
+
+    User.associate = (models) => {
+        User.belongsToMany(models.Asteroid, {
+            through: models.Watchlist,
+            foreignKey: "user_id",
+            otherKey: "nasa_id",
+        });
+    };
+
+    return User;
+};
