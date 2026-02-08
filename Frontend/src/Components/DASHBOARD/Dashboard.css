@@ -1,0 +1,429 @@
+/* --- Professional Design Tokens --- */
+:root {
+    /* Core Palette */
+    --primary: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.4);
+    --bg-deep: #030509;
+    --bg-surface: #0f111a;
+    --bg-card: rgba(22, 26, 38, 0.8);
+    
+    /* Semantic Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    
+    /* Typography */
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    --text-ghost: #475569;
+    
+    /* Effects */
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shine: rgba(255, 255, 255, 0.03);
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Base Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Structure --- */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(239, 68, 68, 0.03) 0%, transparent 50%);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* --- Sidebar (Navigation) --- */
+.sidebar {
+    width: 260px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    z-index: 10;
+}
+
+.sidebar-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar ul { list-style: none; }
+
+.sidebar li {
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li:hover {
+    background: var(--glass-shine);
+    color: var(--text-main);
+}
+
+.sidebar li.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+/* --- Dashboard Split View --- */
+.dashboard-split-view {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2.5rem;
+    height: 100%;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* --- Stat Cards (Left Panel) --- */
+.stat-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card h3 {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.stat-row:last-child { border-bottom: none; }
+
+.stat-row span { color: var(--text-dim); font-size: 0.95rem; }
+
+.status-online {
+    display: inline-flex;
+    align-items: center;
+    color: var(--success);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-online::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 12px var(--success);
+    animation: pulse 2s infinite;
+}
+
+/* --- Live Feed (Right Panel) --- */
+.scrollable-asteroid-list-container {
+    height: calc(150vh - 355px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar */
+.scrollable-asteroid-list-container::-webkit-scrollbar { width: 5px; }
+.scrollable-asteroid-list-container::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 10px;
+}
+
+.asteroid-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.asteroid-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.asteroid-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+.hazard-status { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.25rem; }
+
+.asteroid-distance { font-size: 0.85rem; color: var(--text-dim); }
+
+/* --- Risk Levels --- */
+.risk-low { color: var(--success); }
+.risk-medium { color: var(--warning); }
+.risk-high { color: var(--danger); }
+
+/* --- Buttons --- */
+.add-to-watched-btn {
+    margin-top: 1.25rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.add-to-watched-btn:hover {
+    background: #4f46e5;
+    filter: brightness(1.1);
+}
+
+.remove-from-watched-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.75rem;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* --- Details View --- */
+.asteroid-details {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.details-card {
+    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    padding: 3rem;
+    border-radius: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.close-details-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--glass-border);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.details-item {
+    background: var(--glass-shine);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.details-item strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Watchlist Grid --- */
+.scrollable-watched-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.watched-card {
+    background: var(--bg-card);
+    border-left: 4px solid var(--primary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: 0.3s;
+}
+
+/* --- Animations --- */
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+    .dashboard-split-view { grid-template-columns: 1fr; }
+    .sidebar { width: 80px; }
+    .sidebar-title, .sidebar li span { display: none; }
+}
+
+
+
+/* --- Notification Box Styling --- */
+.notification-box {
+    margin-top: 2rem;
+    max-height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-list {
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.notification-list::-webkit-scrollbar { width: 4px; }
+.notification-list::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+
+.notification-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.notification-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.notification-content p {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.notification-content small {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+}
+
+.mark-read-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-ghost);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    line-height: 1;
+}
+
+.mark-read-btn:hover {
+    color: var(--danger);
+}
+
+.no-notifications {
+    font-size: 0.85rem;
+    color: var(--text-ghost);
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Styling for the word HIGH inside notifications */
+.high-risk-text {
+    color: #ef4444; /* Bright Red */
+    font-weight: 800;
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.2);
+}
+
+/* Ensure the normal notification text stays clean */
+.notification-content p {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+
+.dashboard-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.logout-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #d9363e;
+}

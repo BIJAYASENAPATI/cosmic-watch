@@ -1,0 +1,307 @@
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-dark: #05070a;
+  --bg-card: #12141c;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.02);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-width: 1200px;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.cw-lp-container {
+  background: radial-gradient(circle at center, #0f0c29 0%, var(--bg-dark) 100%);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+/* Navbar Alignment */
+.cw-lp-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 8%;
+  background: rgba(5, 7, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.cw-lp-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.cw-lp-nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.cw-lp-nav-links a:hover {
+  color: var(--primary);
+}
+
+.cw-lp-signup-btn {
+  background: var(--primary);
+  color: #fff !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Hero Section Alignment */
+.cw-lp-hero {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cw-lp-hero-content {
+  max-width: 900px;
+  padding: 0 24px;
+  z-index: 2;
+}
+
+.cw-lp-hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  animation: float 4s ease-in-out infinite;
+}
+
+.cw-lp-hero-title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.cw-lp-hero-title .highlight {
+  background: linear-gradient(180deg, var(--primary) 0%, #a5b4fc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--primary);
+}
+
+.cw-lp-hero-subtitle {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cw-lp-hero-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Section Common Styling */
+.cw-lp-section {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+
+.cw-lp-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cw-lp-main-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cw-lp-sub-title {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Perfect Grid Alignment */
+.cw-lp-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.cw-lp-feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the left inside the card */
+  transition: var(--transition);
+}
+
+.cw-lp-feature-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cw-lp-icon-box {
+  background: rgba(99, 102, 241, 0.1);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+.cw-lp-feature-title {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.cw-lp-feature-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* About Section Box Alignment */
+.cw-lp-about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 50px;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.cw-lp-about-content p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.cw-lp-mission {
+  font-weight: 700;
+  color: var(--primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid var(--border);
+  padding-top: 30px;
+  margin-bottom: 0 !important;
+}
+
+/* Footer Alignment */
+.cw-lp-footer {
+  border-top: 1px solid var(--border);
+  padding: 80px 8% 40px;
+  margin-top: 60px;
+  background: rgba(5, 7, 10, 0.5);
+}
+
+.cw-lp-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  max-width: var(--container-width);
+  margin: 0 auto 60px;
+}
+
+.cw-lp-footer-brand .cw-lp-logo {
+  margin-bottom: 15px;
+}
+
+.cw-lp-footer-brand p {
+  color: var(--text-muted);
+  max-width: 300px;
+}
+
+.cw-lp-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cw-lp-footer-links h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.cw-lp-footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.cw-lp-footer-links a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+.cw-lp-footer-bottom {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Tablet & Mobile Symmetry */
+@media (max-width: 1024px) {
+  .cw-lp-features-grid { grid-template-columns: repeat(2, 1fr); }
+  .cw-lp-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .cw-lp-navbar { padding: 1rem 5%; }
+  .cw-lp-nav-links { display: none; }
+  .cw-lp-features-grid { grid-template-columns: 1fr; }
+  .cw-lp-footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cw-lp-main-title { font-size: 2.2rem; }
+  .cw-lp-hero-title { font-size: 2.8rem; }
+}
